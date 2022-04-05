@@ -1,0 +1,47 @@
+setup:
+    mode: 'autoencoder'
+    multi_gpus:
+        usage: False
+        nodes: 1
+    hyperparameters:
+        hyperparameter_tag: False
+        num_hyperparam_runs: 15
+    master_rank: 0
+    num_images: 7
+    num_workers: 8
+    print_interval: 30
+    print_interval_val: 600
+    optimiser:
+        name: 'adam'
+#        lr: 0.00002
+#        weight_decay: 0.00001
+        lr: 0.000025
+        weight_decay: 0.0001
+    loss:
+        name: 'mse'
+    mean: [ 0.5, 0.5, 0.5 ]
+    std: [ 0.5, 0.5, 0.5 ]
+
+augments:
+    hflip: 0.5
+    rscale_crop: [512, 1024]
+
+training:
+    val_split: val
+    epochs: 300
+    batch_size: 32
+    save_interval: 1
+    patience: 150000000
+    checkpoint_path: # /home/tony/Documents/git/mha-autoencoder/models/conv_ae/cityscapes/checkpoint.pth
+
+testing:
+    val_split: val
+    test_split: test
+    batch_size: 1
+    model_path: /home/tony/Documents/git/mha-autoencoder-results/final_models/final_autoencoder/best_ae.pth
+#    model_path: /home/tony/Documents/git/mha-autoencoder-results/training_run_58/best_model.pth
+    # model_path: /home/tony/Documents/git/mha-autoencoder/models/lednet_ae/cityscapes/best_model.pth
+
+eval:
+    print_interval: 200
+    save_path: /home/tony/Documents/git/mha-autoencoder-results/training_run_56/eval_images/

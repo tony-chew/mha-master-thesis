@@ -1,0 +1,50 @@
+setup:
+    mode: 'mha'
+    master_rank: 0
+    num_images: 5
+    num_workers: 8
+    print_interval: 30
+    print_interval_val: 20
+    optimiser:
+        name: 'adam'
+        # ae lr: 0.000025
+        # seg lr: 0.0005
+        lr: 0.0005
+        weight_decay: 0.0001
+    autoencoder_loss:
+        name: 'mse'
+    segmentation_loss:
+        name: 'cross entropy'
+        weight: [ 2.7, 6.1, 3.6, 7.7, 7.7, 8.1, 8.6, 8.4, 4.3, 7.7, 6.8, 8.0, 8.6, 5.9, 7.7, 7.5, 6.6, 8.5, 8.4 ]
+        ignore_index: 250
+    loss_weights: [ 39.525, 3.623 ]
+    mean: [ 0.5, 0.5, 0.5 ]
+    std: [ 0.5, 0.5, 0.5 ]
+
+augments:
+    hflip: 0.5
+    rscale_crop: [512, 1024]
+
+training:
+    # mode: "stepbystep"
+    stepbystep_iterations: 4
+    mode: "endtoend"
+    val_split: val
+    epochs: 800
+    batch_size: 14
+    save_interval: 1
+    patience: 150000000
+    checkpoint_path: # /home/tony/Documents/git/mha-autoencoder/models/conv_ae/cityscapes/checkpoint.pth
+
+testing:
+    val_split: val
+    test_split: test
+    batch_size: 1
+    model_path: /home/tony/Documents/git/mha-autoencoder-results/training_run_67/best_model.pth
+    # model_path: /home/tony/Documents/git/mha-autoencoder/models/mha4/cityscapes/best_model.pth
+#    ae_path: /home/tony/Documents/git/mha-autoencoder-results/final_models/final_autoencoder/best_ae.pth
+#    semseg_path: /home/tony/Documents/git/mha-autoencoder-results/final_models/final_semseg/best_semseg.pth
+
+eval:
+    print_interval: 200
+    save_path: /home/tony/Documents/git/mha-autoencoder-results/training_run_32/eval_images/

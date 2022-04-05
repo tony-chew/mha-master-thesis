@@ -1,0 +1,9 @@
+matplotlib
+torch
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==1.9.1+cu111
+torchvision==0.10.1+cu111
+pyyaml>=0.6
+torchinfo>=1.6
+tensorboard>=2.8
+scikit-learn>=1.0

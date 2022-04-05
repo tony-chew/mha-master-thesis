@@ -1,0 +1,50 @@
+setup:
+    mode: 'semseg'
+    multi_gpus:
+        usage: False
+        nodes: 1
+    hyperparameters:
+        hyperparameter_tag: False
+        num_hyperparam_runs: 20
+    master_rank: 0
+    num_images: 5
+    num_workers: 8
+    print_interval: 30
+    print_interval_val: 20
+    optimiser:
+        name: 'adam'
+        # lr: 0.0005
+        # weight_decay: 0.0001
+        lr: 0.0005
+        weight_decay: 0.0001
+    loss:
+        name: 'cross entropy'
+        weight: [2.7, 6.1, 3.6, 7.7, 7.7, 8.1, 8.6, 8.4, 4.3, 7.7, 6.8, 8.0, 8.6, 5.9, 7.7, 7.5, 6.6, 8.5, 8.4]
+        ignore_index: 250
+    mean: [0.5, 0.5, 0.5]
+    std: [0.5, 0.5, 0.5]
+
+augments:
+    hflip: 0.5
+    rscale_crop: [512, 1024]
+
+training:
+    val_split: val
+    epochs: 1000
+    batch_size: 30
+    save_interval: 1
+    patience: 150000000
+    checkpoint_path: # /home/tony/Documents/git/mha-autoencoder/models/edanet/cityscapes/checkpoint.pth
+    second_stage_path: # /home/tony/Documents/training_runs/training_run_48/cityscapes/best_model.pth
+
+testing:
+    val_split: val
+    test_split: test
+    batch_size: 1
+    test_mode: True
+    model_path: /home/tony/Documents/git/mha-autoencoder-results/training_run_53/best_model.pth
+    # model_path: /home/tony/Documents/git/mha-autoencoder/models/edanet/cityscapes/best_model.pth
+
+eval:
+    print_interval: 200
+    save_path: /home/tony/Documents/git/mha-autoencoder-results/training_run_53/

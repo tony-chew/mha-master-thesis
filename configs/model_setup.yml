@@ -1,0 +1,66 @@
+dataset:
+    name: cityscapes
+    input_res: [ 512, 1024 ]
+
+mapillary:
+    root: /home/tony/Documents/datasets/mapillary/mapillary-vistas-dataset_public_v1.0
+
+cityscapes:
+    root: /home/tony/Documents/datasets/cityscapes/
+
+model: mha4
+model_ae: edanet_ae
+model_semseg: edanet
+
+conv_ae:
+    num_layers: 10
+    latent_size: 512
+    # latent_size: [ 192, 256 ]
+    dropout_rate: 0.02
+    # dropout_rate: [ 0.02, 0.2 ]
+    use_residual: False
+    flatten_bottleneck: False
+    compress_bottleneck: False
+
+fastscnn_ae:
+    latent_size: 512
+    flatten_bottleneck: False
+    compress_bottleneck: True
+
+lednet_ae:
+    latent_size: 512
+    flatten_bottleneck: False
+    compress_bottleneck: True
+
+dabnet_ae:
+    latent_size: 512
+    flatten_bottleneck: False
+    compress_bottleneck: True
+
+edanet_ae:
+    latent_size: 512
+    flatten_bottleneck: False
+    compress_bottleneck: True
+
+erfnet_ae:
+    latent_size: 512
+    flatten_bottleneck: False
+    compress_bottleneck: True
+
+erfnet:
+    num_classes: 19
+
+edanet:
+    num_classes: 19
+
+mha1:
+    num_classes: 19
+
+mha2:
+    num_classes: 19
+
+mha3:
+    num_classes: 19
+
+mha4:
+    num_classes: 19
